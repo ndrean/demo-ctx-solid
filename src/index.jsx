@@ -8,7 +8,7 @@ import { useRoutes, Route, Routes, A } from "@solidjs/router";
 const Comp1 = lazy(() => import("./comp1"));
 const Comp2 = lazy(() => import("./comp2"));
 
-import Home from "./home";
+import Home from "./Home.jsx";
 import context from "./context";
 
 function app(ctx) {
