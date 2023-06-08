@@ -13,8 +13,7 @@ const comp1 = (ctx) => {
   return function Comp1() {
     const [slide, setSlide] = createSignal(10);
 
-    // const [initresult] =
-    createResource(10, asyncFunction(ctx));
+    const [initresult] = createResource(10, asyncFunction(ctx));
 
     return (
       <div>
@@ -25,18 +24,15 @@ const comp1 = (ctx) => {
           value={slide()}
           onchange={(e) => {
             setSlide(e.currentTarget.value);
-            const [result] = createResource(
-              e.currentTarget.value,
-              asyncFunction(ctx)
-            );
+            // const [result] =
+            createResource(e.currentTarget.value, asyncFunction(ctx));
           }}
         />
         <p>{slide()}</p>
-        <p> This data will be available soon: {data()}</p>
+        <p>Initial async render: {initresult()}</p>
+        <p> Async dynamic render {data()}</p>
         <p></p>
-        <p>
-          The state "bool" was sest in the context: {bool() ? "true" : "false"}
-        </p>
+        <p>The state "bool" set in the context: {bool() ? "true" : "false"}</p>
         <button onClick={() => setBool((v) => !v)}>Toggle bool</button>
       </div>
     );

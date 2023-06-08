@@ -9,7 +9,7 @@ const comp2 = (ctx) => {
     setNb((x) => ++x);
     return (
       <div>
-        <p>Comp1 generated this data: {data()}</p>
+        <p>Async update from Comp1: {data()}</p>
         <p>Comp1 changed the state "bool": {bool() ? "true" : "false"}</p>
         <p>This component was called {nb()} times.</p>
       </div>
