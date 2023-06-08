@@ -8,11 +8,11 @@ const asyncFunction = (ctx) => async (x) =>
   }).then((r) => ctx.setData(r));
 
 const comp1 = (ctx) => {
-  const { bool, setBool, setData, data } = ctx;
+  const { bool, setBool, data } = ctx;
 
   return function Comp1() {
     const [slide, setSlide] = createSignal(10);
-
+    // first async call, updates the state
     const [initresult] = createResource(10, asyncFunction(ctx));
 
     return (
@@ -24,7 +24,7 @@ const comp1 = (ctx) => {
           value={slide()}
           onchange={(e) => {
             setSlide(e.currentTarget.value);
-            // const [result] =
+            // dynamic async call
             createResource(e.currentTarget.value, asyncFunction(ctx));
           }}
         />
