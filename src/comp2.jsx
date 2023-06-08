@@ -3,7 +3,6 @@ import context from "./context";
 
 const comp2 = (ctx) => {
   const { data, bool } = ctx;
-  console.log(ctx);
   const [nb, setNb] = createSignal(0);
 
   return function Comp2() {

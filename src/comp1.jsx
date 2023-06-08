@@ -1,25 +1,20 @@
-import { createEffect, createResource, createSignal } from "solid-js";
+import { createResource, createSignal } from "solid-js";
 import context from "./context";
 
 // async mock
-const asyncFunction = async (x) =>
+const asyncFunction = (ctx) => async (x) =>
   new Promise((resolve, reject) => {
-    return setTimeout(() => resolve(x * 100), 2000);
-  });
+    return setTimeout(() => resolve(x * 100), 1000);
+  }).then((r) => ctx.setData(r));
 
 const comp1 = (ctx) => {
   const { bool, setBool, setData, data } = ctx;
 
-  const updateAsync = (state) => {
-    const [result] = createResource(state, asyncFunction);
-    createEffect(() => setData(result()));
-    return result;
-  };
-
   return function Comp1() {
     const [slide, setSlide] = createSignal(10);
 
-    const result = updateAsync(slide());
+    // const [initresult] =
+    createResource(10, asyncFunction(ctx));
 
     return (
       <div>
@@ -29,12 +24,15 @@ const comp1 = (ctx) => {
           max="100"
           value={slide()}
           onchange={(e) => {
-            setSlide(e.target.value);
-            updateAsync(slide());
+            setSlide(e.currentTarget.value);
+            const [result] = createResource(
+              e.currentTarget.value,
+              asyncFunction(ctx)
+            );
           }}
         />
         <p>{slide()}</p>
-        <p> This data will be available soon: {result()}</p>
+        <p> This data will be available soon: {data()}</p>
         <p></p>
         <p>
           The state "bool" was sest in the context: {bool() ? "true" : "false"}
