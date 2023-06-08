@@ -5,7 +5,7 @@ import context from "./context";
 const asyncFunction = (ctx) => async (x) =>
   new Promise((resolve, reject) => {
     return setTimeout(() => resolve(x * 100), 1000);
-  }).then((r) => ctx.setData(r));
+  }).then(ctx.setData);
 
 const comp1 = (ctx) => {
   const { bool, setBool, data } = ctx;
