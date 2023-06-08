@@ -13,12 +13,13 @@ const comp1 = (ctx) => {
   const updateAsync = (state) => {
     const [result] = createResource(state, asyncFunction);
     createEffect(() => setData(result()));
+    return result;
   };
 
   return function Comp1() {
     const [slide, setSlide] = createSignal(10);
 
-    updateAsync(slide());
+    const result = updateAsync(slide());
 
     return (
       <div>
@@ -33,7 +34,7 @@ const comp1 = (ctx) => {
           }}
         />
         <p>{slide()}</p>
-        <p> This data will be available soon: {data()}</p>
+        <p> This data will be available soon: {result()}</p>
         <p></p>
         <p>
           The state "bool" was sest in the context: {bool() ? "true" : "false"}
