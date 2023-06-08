@@ -2,6 +2,8 @@
 
 Check out <https://githubbox.com/ndrean/demo-ctx-solid>
 
+Bit more elaborate: <https://dev.to/ndrean/revisit-context-with-a-useful-pattern-illustrated-with-solidjs-5hf1>
+
 ## The CONTEXT pattern
 
 A component is a function takes some props and renders a view. In these props, you may have some state elements. When you do multi-page SPAs, you rebuild components on every new page. You may want to use a global store to share state between then. A useful pattern for this is to parametrise the function component:
