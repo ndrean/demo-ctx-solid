@@ -3,25 +3,26 @@ import { Router } from "@solidjs/router";
 import { lazy } from "solid-js";
 import { useRoutes, Route, Routes, A } from "@solidjs/router";
 
-// import navbarSolid from "./navbarSolid";
-// import routes from "./routes";
-const Comp1 = lazy(() => import("./comp1"));
-const Comp2 = lazy(() => import("./comp2"));
-
 import Home from "./Home.jsx";
 import context from "./context";
 
 function app(ctx) {
-  //   const NavBar = navbarSolid(context);
-  //   const Routes = useRoutes(routes);
+  const Comp1 = lazy(() => import("./comp1"));
+  const Comp2 = lazy(() => import("./comp2"));
 
   return (props) => (
     <div>
       <Router>
         <nav>
-          <A href="/">Home</A>
-          <A href="/c1">Comp1</A>
-          <A href="/c2">Comp2</A>
+          <A style={{ "margin-right": "10px" }} href="/">
+            Home
+          </A>
+          <A style={{ "margin-right": "10px" }} href="/c1">
+            Comp1
+          </A>
+          <A style={{ "margin-right": "10px" }} href="/c2">
+            Comp2
+          </A>
         </nav>
         <Routes>
           <Route path="/" component={Home} />
@@ -29,12 +30,9 @@ function app(ctx) {
           <Route path="/c2" component={Comp2} />
         </Routes>
       </Router>
-      {/* <Navbar style={{ display: "inline-block;", "margin-right": "10px;" }} /> */}
-      {/* <div id="component"></div> */}
     </div>
   );
 }
 
 const App = app(context);
-// history.pushState("", "", "/");
 render(() => <App />, document.getElementById("root"));
