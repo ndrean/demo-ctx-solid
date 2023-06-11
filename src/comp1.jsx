@@ -2,7 +2,7 @@ import { createResource, createSignal } from "solid-js";
 import context from "./context";
 
 // async mock
-const asyncFunction = (ctx) => async (x) =>
+const asyncFunction = (ctx) => (x) =>
   new Promise((resolve, reject) => {
     return setTimeout(() => resolve(x * 100), 1000);
   }).then(ctx.setData);

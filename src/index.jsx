@@ -7,6 +7,7 @@ import Home from "./Home.jsx";
 import context from "./context";
 
 function app(ctx) {
+  history.pushState("", "", "/");
   const Comp1 = lazy(() => import("./comp1"));
   const Comp2 = lazy(() => import("./comp2"));
 
