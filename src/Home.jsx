@@ -6,7 +6,10 @@ const md = `
 
 ~~~js
 const title = (ctx)=> 
-(props) => <div>{props.data}</div>
+  (props) => 
+     <div>
+       My data: {props.data}
+     </div>
 ~~~~
 
 
