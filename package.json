@@ -5,7 +5,8 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
-    "solid-js": "^1.7.6"
+    "solid-js": "^1.7.6",
+    "solid-markdown": "^1.2.2"
   },
   "scripts": {
     "dev": "vite",

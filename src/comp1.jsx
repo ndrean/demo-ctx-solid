@@ -3,17 +3,16 @@ import context from "./context";
 
 // async mock
 const asyncFunction = (ctx) => (x) =>
-  new Promise((resolve, reject) => {
-    return setTimeout(() => resolve(x * 100), 1000);
-  }).then(ctx.setData);
+  new Promise((resolve, reject) =>
+    setTimeout(() => resolve(x * 100), 1000)
+  ).then(ctx.setData);
 
 const comp1 = (ctx) => {
-  const { bool, setBool, data } = ctx;
+  const { bool, setBool, data, slide, setSlide } = ctx;
 
   return function Comp1() {
-    const [slide, setSlide] = createSignal(10);
-    // first async call, updates the state
-    const [initresult] = createResource(10, asyncFunction(ctx));
+    // first async call, sets the state and then gets it
+    !data() && createResource(10, asyncFunction(ctx));
 
     return (
       <div>
@@ -29,7 +28,7 @@ const comp1 = (ctx) => {
           }}
         />
         <p>{slide()}</p>
-        <p>Initial async render: {initresult()}</p>
+        <p>Initial async render: {data()}</p>
         <p> Async dynamic render {data()}</p>
         <p></p>
         <p>The state "bool" set in the context: {bool() ? "true" : "false"}</p>
