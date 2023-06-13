@@ -11,7 +11,7 @@ const comp1 = (ctx) => {
   const { bool, setBool, data, slide, setSlide } = ctx;
 
   return function Comp1() {
-    // first async call, sets the state and then gets it
+    // first async call when component is mounted
     !data() && createResource(10, asyncFunction(ctx));
 
     return (
@@ -28,8 +28,7 @@ const comp1 = (ctx) => {
           }}
         />
         <p>{slide()}</p>
-        <p>Initial async render: {data()}</p>
-        <p> Async dynamic render {data()}</p>
+        <p> Async dynamic render: {data()}</p>
         <p></p>
         <p>The state "bool" set in the context: {bool() ? "true" : "false"}</p>
         <button onClick={() => setBool((v) => !v)}>Toggle bool</button>
